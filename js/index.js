@@ -124,7 +124,6 @@ submitBtn.addEventListener("click", calculateScore);
 // Eventlisterner to Rest Quiz
 const resetBtn = document.querySelector("#btnReset")
 resetBtn.addEventListener("click", () => {
-  location = "http://127.0.0.1:5500/";
   location.reload();
 })
 
