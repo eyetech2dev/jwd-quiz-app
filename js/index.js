@@ -18,17 +18,17 @@
 
       5. Add a countdown timer - when the time is up, end the quiz, display the score and highlight the correct answers
 *************************** */
-console.log("Hello I am connected!");
-
 
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
+
+     // Set timer to 1 minute
     let oneMinute = 60 * 1;
-    display = document.querySelector('#time');
-    startTimer(oneMinute, display);
+    const timeDisplay = document.querySelector('#time');
+    startTimer(oneMinute, timeDisplay);
   });
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
@@ -99,13 +99,12 @@ window.addEventListener('DOMContentLoaded', () => {
           // code for task 1 goes here
           if(quizItem.a == i){
             score++;
-            console.log(`Current score is: ${score}`);
           }
         }
       }
     });
     const scoreDiv = document.createElement("div");
-    scoreDiv.innerHTML = `<p id="scoreP">You score is ${score}!</p>`
+    scoreDiv.innerHTML = `<p id="scoreP">You score is ${score} out of ${quizArray.length}!</p>`
     document.querySelector("#score").appendChild(scoreDiv);
   };
 
@@ -123,7 +122,6 @@ resetBtn.addEventListener("click", () => {
   localStorage.reload();
 })
 
- // Set timer to 1 minute
 
 // Timer
 function startTimer(duration, display) {
@@ -138,8 +136,9 @@ function startTimer(duration, display) {
       display.textContent = minutes + ":" + seconds;
 
       if (--timer < 0) {
-        //  timer = duration;
+         timer = duration;
         clearInterval(tiktokClock);
+        display.innerHTML = ": <b>Time's up!!!</b>"
         calculateScore();
       }
   } , 1000);
