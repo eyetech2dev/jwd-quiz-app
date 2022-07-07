@@ -125,7 +125,7 @@ submitBtn.addEventListener("click", calculateScore);
 const resetBtn = document.querySelector("#btnReset")
 resetBtn.addEventListener("click", () => {
   location = "http://127.0.0.1:5500/";
-  localStorage.reload();
+  location.reload();
 })
 
 
