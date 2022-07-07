@@ -107,8 +107,11 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     // Create div with player score
     const scoreDiv = document.createElement("div");
-    scoreDiv.innerHTML = `<p id="scoreP">You score is ${score} out of ${quizArray.length}!</p>`
+    scoreDiv.innerHTML = `<p id="scoreP">Your score is ${score} out of ${quizArray.length}!</p>`
     document.querySelector("#score").appendChild(scoreDiv);
+
+    // Alert pop up with score
+    // alert(`Your score is ${score} out of ${quizArray.length}!`);
   };
 
   // call the displayQuiz function
