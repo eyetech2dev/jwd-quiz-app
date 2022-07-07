@@ -20,11 +20,15 @@
 *************************** */
 console.log("Hello I am connected!");
 
+
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
+    let oneMinute = 60 * 1;
+    display = document.querySelector('#time');
+    startTimer(oneMinute, display);
   });
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
@@ -102,8 +106,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     const scoreDiv = document.createElement("div");
     scoreDiv.innerHTML = `<p id="scoreP">You score is ${score}!</p>`
-    // const scoreDiveContent = scoreDiv.appendChild(newContent);
-    // const quizBody = document.querySelector('#quizWrap');
     document.querySelector("#score").appendChild(scoreDiv);
   };
 
@@ -111,8 +113,37 @@ window.addEventListener('DOMContentLoaded', () => {
   displayQuiz();
 
   // Eventlistener to Submit Quiz
-let submitBtn = document.querySelector("#btnSubmit")
+const submitBtn = document.querySelector("#btnSubmit")
 submitBtn.addEventListener("click", calculateScore);
+
+// Eventlisterner to Rest Quiz
+const resetBtn = document.querySelector("#btnReset")
+resetBtn.addEventListener("click", () => {
+  location = "http://127.0.0.1:5500/";
+  localStorage.reload();
+})
+
+ // Set timer to 1 minute
+
+// Timer
+function startTimer(duration, display) {
+  var timer = duration, minutes, seconds;
+  const tiktokClock = setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+
+      if (--timer < 0) {
+        //  timer = duration;
+        clearInterval(tiktokClock);
+        calculateScore();
+      }
+  } , 1000);
+}
 
 });
 
