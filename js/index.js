@@ -18,6 +18,7 @@
 
       5. Add a countdown timer - when the time is up, end the quiz, display the score and highlight the correct answers
 *************************** */
+console.log("Hello I am connected!");
 
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
@@ -44,6 +45,16 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'What is the coloured/pigmented part of the eye called?',
+      o: ['Pupil', 'Sclera', 'Iris', 'Conjunctiva'],
+      a: 2,
+    },
+    {
+      q: 'Who is the CEO of Tesla?',
+      o: ['Elvis Musk', 'Elon Tusk', 'Ellen Mask', 'Elon Musk'],
+      a: 3,
+    }
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -76,15 +87,33 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.backgroundColor = "green";
+          liElement.style.fontWeight = 600;
         }
 
         if (radioElement.checked) {
           // code for task 1 goes here
+          if(quizItem.a == i){
+            score++;
+            console.log(`Current score is: ${score}`);
+          }
         }
       }
     });
+    const scoreDiv = document.createElement("div");
+    scoreDiv.innerHTML = `<p id="scoreP">You score is ${score}!</p>`
+    // const scoreDiveContent = scoreDiv.appendChild(newContent);
+    // const quizBody = document.querySelector('#quizWrap');
+    document.querySelector("#score").appendChild(scoreDiv);
   };
 
   // call the displayQuiz function
   displayQuiz();
+
+  // Eventlistener to Submit Quiz
+let submitBtn = document.querySelector("#btnSubmit")
+submitBtn.addEventListener("click", calculateScore);
+
 });
+
+
