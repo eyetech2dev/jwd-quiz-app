@@ -101,8 +101,11 @@ window.addEventListener('DOMContentLoaded', () => {
             score++;
           }
         }
+            // Disable radio buttons
+      radioElement.disabled=true;
       }
     });
+    // Create div with player score
     const scoreDiv = document.createElement("div");
     scoreDiv.innerHTML = `<p id="scoreP">You score is ${score} out of ${quizArray.length}!</p>`
     document.querySelector("#score").appendChild(scoreDiv);
